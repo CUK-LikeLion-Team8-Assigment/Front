@@ -1,16 +1,22 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./Home";
+import { Routes, Route } from "react-router-dom";
+
 import axios from "axios";
+import Home from "./pages/Home/Home";
+import Layout from "./components/Layout/layout";
 
 function App() {
-  axios.get("https://my-json-server.typicode.com/typicode/demo/posts").then(function (response) {
-    console.log(response);
-  });
-  
+  axios
+    .get("https://my-json-server.typicode.com/typicode/demo/posts")
+    .then(function (response) {
+      console.log(response);
+    });
+
   return (
-        <Routes>
-          <Route path="/" element={<Home />} />
-        </Routes>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Layout>
   );
 }
 export default App;
