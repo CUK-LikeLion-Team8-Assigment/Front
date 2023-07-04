@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
+import Lecture from "./pages/Lectrue/Lecture";
 
 function App() {
   axios
@@ -15,6 +16,7 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/lecture" element={<Lecture />} />
       </Routes>
     </Layout>
   );
