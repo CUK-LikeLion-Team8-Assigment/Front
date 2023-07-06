@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
   const [userID, setUserID] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [logInError, setLogInError] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,7 +17,10 @@ const LogIn = () => {
       userEmail,
     };
     axios
-      .post("http://localhost:8080/login", userData)
+      .post(
+        "https://f6227c41-ad14-49d4-8e8d-6179ca749e9a.mock.pstmn.io/login",
+        userData
+      )
       .then((response) => {
         console.log("로그인 성공", response.data);
         // Reset the form fields

@@ -38,11 +38,14 @@ const SignUp = () => {
         setSignUpError("");
         setSignUpSuccess(false);
         axios
-          .post("http://localhost:8080/join", {
-            userEmail,
-            userID,
-            userPassword,
-          })
+          .post(
+            "https://f6227c41-ad14-49d4-8e8d-6179ca749e9a.mock.pstmn.io/join",
+            {
+              userEmail,
+              userID,
+              userPassword,
+            }
+          )
           .then((response) => {
             console.log(response);
             setSignUpSuccess(true);
@@ -76,7 +79,7 @@ const SignUp = () => {
         </div>
         <div className="mb-4">
           <label htmlFor="userID" className="block font-bold mb-1">
-            닉네임
+            아이디
           </label>
           <input
             type="text"

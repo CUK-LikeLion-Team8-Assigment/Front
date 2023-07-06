@@ -1,10 +1,15 @@
 import { useState } from "react";
 import Sidebar from "./sidebar";
 import { FaGripVertical } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const username = location.state?.username;
+
   const toggleSide = () => {
     setIsSidebarOpen(true);
   };
@@ -17,15 +22,29 @@ const Header = () => {
             강의평가
           </span>
         </a>
-        <button
-          onClick={toggleSide}
-          type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-black rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-200   dark:focus:ring-gray-600"
-          aria-controls="navbar-hamburger"
-          aria-expanded={isMenuOpen ? "true" : "false"}
-        >
-          <FaGripVertical size={24} />
-        </button>
+        <div className="flex flex-row">
+          {/* <div className="text-center mt-2">
+            {username ? (
+              <div className="text-sm font-medium text-gray-600 dark:text-gray-200">
+                {username}님 환영합니다
+              </div>
+            ) : (
+              <div className="text-sm font-medium text-red-600">
+                실패했습니다
+              </div>
+            )}
+          </div> */}
+          <button
+            onClick={toggleSide}
+            type="button"
+            className="inline-flex items-center p-2 ml-3 text-sm text-black rounded-lg  focus:outline-none focus:ring-2 focus:ring-gray-200   dark:focus:ring-gray-600"
+            aria-controls="navbar-hamburger"
+            aria-expanded={isMenuOpen ? "true" : "false"}
+          >
+            <FaGripVertical size={24} />
+          </button>
+        </div>
+
         <Sidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
       </div>
     </nav>
