@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import axios from "axios";
+
 import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
 import LogIn from "./pages/LogIn";
@@ -11,7 +11,9 @@ function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+        {/* 나중에 /로 경로수정 */}
         <Route path="/home" element={<Home />} />
+        {/* 나중에 /로 경로수정 */}
         <Route path="/login" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/lecture" element={<Lecture />} />
