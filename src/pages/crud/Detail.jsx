@@ -35,7 +35,7 @@ const Detail = () => {
                <section>
                  <h4>작성날짜</h4>
                  <div className="flex justify-center items-center">
-                   <div class="block mt-1 mb-4 sm:text-sm rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                   <div className="block mt-1 mb-4 sm:text-sm rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                      {new Date(parseInt(data.date)).toISOString().split("T")[0]}
                    </div>
                  </div>
