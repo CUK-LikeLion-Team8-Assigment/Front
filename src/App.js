@@ -1,15 +1,15 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import React, { useRef, useEffect, useReducer } from "react";
 import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import Lecture from "./pages/Lectrue/Lecture";
-
 import Detail from "./pages/crud/Detail";
 import New from "./pages/crud/New";
 import Edit from "./pages/crud/Edit";
 import Assessment from "./pages/crud/Assessment";
+import { useCookies } from "react-cookie";
 
 const AssessmentData = [
   {
@@ -68,10 +68,21 @@ const reducer = (state, action) => {
   return newState;
 };
 
-export const AssessmentStateContext = React.createContext();
-export const AssessmentDispatchContext = React.createContext();
 function App() {
   const [data, dispatch] = useReducer(reducer, AssessmentData);
+  const navigate = useNavigate();
+  const [cookies] = useCookies(["isLoggedIn"]);
+
+  useEffect(() => {
+    const { pathname } = window.location;
+    if (
+      !cookies.isLoggedIn &&
+      pathname !== "/login" &&
+      pathname !== "/signup"
+    ) {
+      navigate("/login");
+    }
+  }, [cookies.isLoggedIn, navigate]);
 
   useEffect(() => {
     dispatch({
@@ -125,16 +136,15 @@ function App() {
       >
         <Layout>
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Assessment />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/New" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/lecture" element={<Lecture />} />
             <Route path="/Assessment" element={<Assessment />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/lecture" element={<Lecture />} />
           </Routes>
         </Layout>
       </AssessmentDispatchContext.Provider>
@@ -143,3 +153,5 @@ function App() {
 }
 
 export default App;
+export const AssessmentStateContext = React.createContext();
+export const AssessmentDispatchContext = React.createContext();

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const LogIn = () => {
   const [userID, setUserID] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [logInError, setLogInError] = useState(false);
+  const [, setCookie] = useCookies();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -22,10 +25,12 @@ const LogIn = () => {
       )
       .then((response) => {
         console.log("로그인 성공", response.data);
+        setCookie("isLoggedIn", true, { path: "/" });
         // Reset the form fields
         setUserID("");
         setUserPassword("");
         setUserEmail("");
+        navigate("/");
       })
       .catch((error) => {
         setLogInError(error.response?.status === 401);
@@ -76,7 +81,7 @@ const LogIn = () => {
           />
           {logInError && (
             <div className="text-red-600 font-bold mt-2">
-              이메일과 비밀번호 조합이 일치하지 않습니다.
+              아이디,이메일 또는 비밀번호가 틀렸습니다.
             </div>
           )}
         </div>

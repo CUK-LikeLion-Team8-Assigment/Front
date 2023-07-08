@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const LogoutButton = () => {
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
+
     axios
       .patch(
         "https://f6227c41-ad14-49d4-8e8d-6179ca749e9a.mock.pstmn.io/logout"
