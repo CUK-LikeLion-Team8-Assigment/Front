@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import ListItem from "./ListItem";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -19,7 +19,7 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="block mr-1 mt-1 mb-2 sm:text-sm rounded-md border-0 px-3.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      className="block mr-1 mt-1 mb-2 rounded-md border-0 px-3.5 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
     >
       {optionList.map((it, idx) => (
         <option key={idx} value={it.value}>
@@ -32,8 +32,8 @@ const ControlMenu = React.memo(({ value, onChange, optionList }) => {
 
 const AssessmentList = ({ assessmentList }) => {
   const navigate = useNavigate();
-  const [sortType, setSortType] = useState("latest"); 
-  const [filter, setFilter] = useState("all"); 
+  const [sortType, setSortType] = useState("latest");
+  const [filter, setFilter] = useState("all");
 
   const getProcessedDiaryList = () => {
     const filterCallBack = (item) => {

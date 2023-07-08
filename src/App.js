@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import React, { useRef, useEffect, useReducer } from "react";
-
 import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
 import LogIn from "./pages/LogIn";
@@ -72,12 +71,6 @@ const reducer = (state, action) => {
 export const AssessmentStateContext = React.createContext();
 export const AssessmentDispatchContext = React.createContext();
 function App() {
-  // axios
-  //   .get("https://my-json-server.typicode.com/typicode/demo/posts")
-  //   .then(function (response) {
-  //     console.log(response);
-  //   });
-
   const [data, dispatch] = useReducer(reducer, AssessmentData);
 
   useEffect(() => {
@@ -133,13 +126,12 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
-            {/* 나중에 /로 경로수정 */}
+            <Route path="/" element={<Home />} />
             <Route path="/home" element={<Assessment />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/New" element={<New />} />
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/Assessment" element={<Assessment />} />
-            {/* 나중에 /로 경로수정 */}
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/lecture" element={<Lecture />} />
