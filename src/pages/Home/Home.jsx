@@ -19,14 +19,7 @@ const Home = () => {
   return (
     <div>
       <Logo>
-        <img
-          src={lion}
-          style={{
-            width: "400px",
-            height: "300px",
-            margin: "auto",
-          }}
-        />
+        <img src={lion} alt="lion" className="w-[400px] h-[300px] m-auto" />
       </Logo>
 
       <ul

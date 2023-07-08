@@ -1,4 +1,4 @@
-import { useRef, useState, useContext, useCallback,useEffect } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AssessmentDispatchContext } from "../../App";
 
@@ -7,16 +7,14 @@ export const getStringDate = (dateString) => {
   return date.toISOString().slice(0, 10);
 };
 
-
 const Editor = ({ isEdit, originData }) => {
   const contentRef = useRef();
   const [content, setContent] = useState("");
   const [score, setScore] = useState(3);
   const [date, setDate] = useState(getStringDate(new Date()));
-  const [lecture , setLecture] = useState("");
+  const [lecture, setLecture] = useState("");
 
   const { onCreate, onEdit, onRemove } = useContext(AssessmentDispatchContext);
-
 
   const navigate = useNavigate();
   const handleSubmit = () => {
@@ -33,28 +31,28 @@ const Editor = ({ isEdit, originData }) => {
       if (!isEdit) {
         onCreate(date, lecture, content, score);
       } else {
-        onEdit(originData.id, date,lecture, content, score);
+        onEdit(originData.id, date, lecture, content, score);
       }
     }
     //onCreate 함수는 App.js 에서 date, content, emotion 을 받았었음
     navigate("/", { replace: true });
   };
 
-  const handleRemove = () => {
-    if (window.confirm("정말 삭제하시겠습니까?")) {
-      onRemove(originData.id);
-      navigate("/", { replace: true });
-    }
-  };
+  // const handleRemove = () => {
+  //   if (window.confirm("정말 삭제하시겠습니까?")) {
+  //     onRemove(originData.id);
+  //     navigate("/", { replace: true });
+  //   }
+  // };
 
   useEffect(() => {
     if (isEdit) {
-       const originDate = new Date(parseInt(originData.date));
-       setDate(getStringDate(originDate));
+      const originDate = new Date(parseInt(originData.date));
+      setDate(getStringDate(originDate));
       setScore(originData.score);
       setLecture(originData.lecture);
       setContent(originData.content);
-    } 
+    }
   }, [isEdit, originData]);
 
   return (
@@ -72,7 +70,7 @@ const Editor = ({ isEdit, originData }) => {
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
                       type="date"
-                      className="block mt-1 mb-4 sm:text-sm rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block mt-1 mb-4 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </section>
@@ -86,7 +84,7 @@ const Editor = ({ isEdit, originData }) => {
                     onChange={(e) => {
                       setScore(Number(e.target.value));
                     }}
-                    className="block mt-1 mb-4 sm:text-sm rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block mt-1 mb-4 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   >
                     <option value={1}>1</option>
                     <option value={2}>2</option>
@@ -108,7 +106,7 @@ const Editor = ({ isEdit, originData }) => {
                     type="text"
                     name="first-name"
                     id="first-name"
-                    className="block mt-1 mb-4 sm:text-sm rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    className="block mt-1 mb-4 rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                 </div>
               </section>
@@ -140,7 +138,7 @@ const Editor = ({ isEdit, originData }) => {
                     onClick={handleSubmit}
                     className="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
                   >
-                   {isEdit ?  "수정완료" : "작성완료" }
+                    {isEdit ? "수정완료" : "작성완료"}
                   </button>
                 </div>
               </section>
