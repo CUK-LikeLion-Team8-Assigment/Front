@@ -1,15 +1,38 @@
-import { useState } from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  setUserID,
+  setUserPassword,
+  setUserEmail,
+  setLogInError,
+  login,
+} from "../../actions/actions";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 const LogIn = () => {
-  const [userID, setUserID] = useState("");
-  const [userPassword, setUserPassword] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [logInError, setLogInError] = useState(false);
-  const [, setCookie] = useCookies();
+  const userID = useSelector((state) => state.userID);
+  const userPassword = useSelector((state) => state.userPassword);
+  const userEmail = useSelector((state) => state.userEmail);
+  const logInError = useSelector((state) => state.logInError);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLoginStatus = () => {
+      const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+      if (storedIsLoggedIn === "true") {
+        dispatch(login()); // Dispatch login action to update state
+      } else {
+        navigate("/login");
+      }
+    };
+
+    if (!isLoggedIn) {
+      checkLoginStatus();
+    }
+  }, [isLoggedIn, dispatch, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +41,7 @@ const LogIn = () => {
       userPassword,
       userEmail,
     };
+
     axios
       .post(
         "https://f6227c41-ad14-49d4-8e8d-6179ca749e9a.mock.pstmn.io/login",
@@ -25,15 +49,15 @@ const LogIn = () => {
       )
       .then((response) => {
         console.log("로그인 성공", response.data);
-        setCookie("isLoggedIn", true, { path: "/" });
+        dispatch(login()); // Dispatch login action to update state
+        localStorage.setItem("isLoggedIn", "true"); // Store login status in local storage
         // Reset the form fields
-        setUserID("");
-        setUserPassword("");
-        setUserEmail("");
-        navigate("/");
+        dispatch(setUserID(""));
+        dispatch(setUserPassword(""));
+        dispatch(setUserEmail(""));
       })
       .catch((error) => {
-        setLogInError(error.response?.status === 401);
+        dispatch(setLogInError(true));
       });
   };
 
@@ -49,7 +73,7 @@ const LogIn = () => {
             type="text"
             id="userID"
             value={userID}
-            onChange={(e) => setUserID(e.target.value)}
+            onChange={(e) => dispatch(setUserID(e.target.value))}
             className="w-full px-3 py-2 border rounded"
             required
           />
@@ -62,7 +86,7 @@ const LogIn = () => {
             type="password"
             id="userPassword"
             value={userPassword}
-            onChange={(e) => setUserPassword(e.target.value)}
+            onChange={(e) => dispatch(setUserPassword(e.target.value))}
             className="w-full px-3 py-2 border rounded"
             required
           />
@@ -75,7 +99,7 @@ const LogIn = () => {
             type="email"
             id="userEmail"
             value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
+            onChange={(e) => dispatch(setUserEmail(e.target.value))}
             className="w-full px-3 py-2 border rounded"
             required
           />

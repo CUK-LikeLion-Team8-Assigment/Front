@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import React, { useRef, useEffect, useReducer } from "react";
 import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
@@ -9,7 +9,7 @@ import Detail from "./pages/crud/Detail";
 import New from "./pages/crud/New";
 import Edit from "./pages/crud/Edit";
 import Assessment from "./pages/crud/Assessment";
-import { useCookies } from "react-cookie";
+import { useSelector } from "react-redux";
 
 const AssessmentData = [
   {
@@ -70,19 +70,7 @@ const reducer = (state, action) => {
 
 function App() {
   const [data, dispatch] = useReducer(reducer, AssessmentData);
-  const navigate = useNavigate();
-  const [cookies] = useCookies(["isLoggedIn"]);
-
-  useEffect(() => {
-    const { pathname } = window.location;
-    if (
-      !cookies.isLoggedIn &&
-      pathname !== "/login" &&
-      pathname !== "/signup"
-    ) {
-      navigate("/login");
-    }
-  }, [cookies.isLoggedIn, navigate]);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   useEffect(() => {
     dispatch({
@@ -136,13 +124,34 @@ function App() {
       >
         <Layout>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/home" element={<Assessment />} />
-            <Route path="/detail/:id" element={<Detail />} />
-            <Route path="/New" element={<New />} />
-            <Route path="/edit/:id" element={<Edit />} />
-            <Route path="/lecture" element={<Lecture />} />
-            <Route path="/Assessment" element={<Assessment />} />
+            <Route
+              path="/"
+              element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/home"
+              element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/detail/:id"
+              element={isLoggedIn ? <Detail /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/New"
+              element={isLoggedIn ? <New /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/edit/:id"
+              element={isLoggedIn ? <Edit /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/Assessment"
+              element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/lecture"
+              element={isLoggedIn ? <Lecture /> : <Navigate to="/login" />}
+            />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
