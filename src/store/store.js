@@ -5,15 +5,21 @@ import { login } from "../actions/actions";
 
 const middleware = [thunk];
 
+const initialIsLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
 const store = configureStore({
   reducer: loginReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(...middleware),
   devTools: process.env.NODE_ENV !== "production",
+  preloadedState: {
+    login: {
+      isLoggedIn: initialIsLoggedIn,
+    },
+  },
 });
 
-const isLoggedIn = localStorage.getItem("isLoggedIn");
-if (isLoggedIn === "true") {
+if (initialIsLoggedIn) {
   store.dispatch(login());
 }
 
