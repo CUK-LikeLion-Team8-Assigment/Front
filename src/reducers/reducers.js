@@ -19,7 +19,9 @@ const loginReducer = (state = initialState, action) => {
     case "RESET_LOGIN_FORM":
       return initialState;
     case "LOGIN_SUCCESS":
-      return { ...state, isLoggedIn: true }; // Set isLoggedIn to true on successful login
+      return { ...state, isLoggedIn: true };
+    case "LOGOUT_SUCCESS":
+      return { ...state, isLoggedIn: false };
     default:
       return state;
   }

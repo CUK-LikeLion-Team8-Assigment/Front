@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { logout } from "../../actions/actions";
+import { useNavigate } from "react-router-dom";
 
 const LogoutButton = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleLogout = (e) => {
     e.preventDefault();
 
@@ -11,20 +17,16 @@ const LogoutButton = () => {
       )
       .then((response) => {
         console.log(response.data);
+        dispatch(logout());
+        localStorage.setItem("isLoggedIn", "false");
+        navigate("/login");
       })
       .catch((error) => {
         console.error("Logout error:", error);
       });
   };
 
-  return (
-    <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      onClick={handleLogout}
-    >
-      로그아웃
-    </button>
-  );
+  return <button onClick={handleLogout}>로그아웃</button>;
 };
 
 export default LogoutButton;

@@ -23,7 +23,7 @@ const LogIn = () => {
     const checkLoginStatus = () => {
       const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
       if (storedIsLoggedIn === "true") {
-        dispatch(login()); // Dispatch login action to update state
+        dispatch(login());
       } else {
         navigate("/login");
       }
@@ -49,12 +49,13 @@ const LogIn = () => {
       )
       .then((response) => {
         console.log("로그인 성공", response.data);
-        dispatch(login()); // Dispatch login action to update state
-        localStorage.setItem("isLoggedIn", "true"); // Store login status in local storage
-        // Reset the form fields
+        dispatch(login());
+        localStorage.setItem("isLoggedIn", "true");
         dispatch(setUserID(""));
         dispatch(setUserPassword(""));
         dispatch(setUserEmail(""));
+
+        navigate("/");
       })
       .catch((error) => {
         dispatch(setLogInError(true));

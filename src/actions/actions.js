@@ -28,3 +28,8 @@ export const login = (userData) => {
     payload: userData,
   };
 };
+export const logout = () => {
+  return {
+    type: "LOGOUT_SUCCESS",
+  };
+};

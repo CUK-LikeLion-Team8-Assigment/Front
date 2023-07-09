@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
 import loginReducer from "../reducers/reducers";
-import { login } from "../actions/actions"; // Import the login action from actions.js
+import { login } from "../actions/actions";
 
 const middleware = [thunk];
 
@@ -12,10 +12,9 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== "production",
 });
 
-// Initialize the isLoggedIn state from local storage
 const isLoggedIn = localStorage.getItem("isLoggedIn");
 if (isLoggedIn === "true") {
-  store.dispatch(login()); // Dispatch the login action to update the state
+  store.dispatch(login());
 }
 
 export default store;

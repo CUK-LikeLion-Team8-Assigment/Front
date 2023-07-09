@@ -137,7 +137,7 @@ function App() {
               element={isLoggedIn ? <Detail /> : <Navigate to="/login" />}
             />
             <Route
-              path="/New"
+              path="/new"
               element={isLoggedIn ? <New /> : <Navigate to="/login" />}
             />
             <Route
@@ -145,7 +145,7 @@ function App() {
               element={isLoggedIn ? <Edit /> : <Navigate to="/login" />}
             />
             <Route
-              path="/Assessment"
+              path="/assessment"
               element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
             />
             <Route

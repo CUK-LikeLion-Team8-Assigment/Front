@@ -1,9 +1,12 @@
 import React, { useRef, useEffect } from "react";
 import { FaTimes } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import LogoutButton from "../../pages/LogOut";
 
 function Sidebar({ isOpen, setIsOpen }) {
   const outside = useRef(null);
+  const isLoggedIn = useSelector((state) => state.isLoggedIn);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
@@ -41,11 +44,27 @@ function Sidebar({ isOpen, setIsOpen }) {
       </div>
 
       <ul className="text-center font-bold text-white mt-20 sm:text-[8px]">
+        {isLoggedIn ? (
+          <li className="my-8">
+            <Link to="/">
+              <LogoutButton />
+            </Link>
+          </li>
+        ) : (
+          <>
+            <li className="my-8">
+              <Link to="/login">로그인</Link>
+            </li>
+            <li className="my-8">
+              <Link to="/signup">회원가입</Link>
+            </li>
+          </>
+        )}
         <li className="my-8">
-          <Link to="/login">로그인</Link>
+          <Link to="/assessment">강의평가</Link>
         </li>
         <li className="my-8">
-          <Link to="/signup">회원가입</Link>
+          <Link to="/lecture">강의목록</Link>
         </li>
       </ul>
     </div>
