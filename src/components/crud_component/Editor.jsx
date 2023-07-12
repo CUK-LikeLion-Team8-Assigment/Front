@@ -38,12 +38,12 @@ const Editor = ({ isEdit, originData }) => {
     navigate("/", { replace: true });
   };
 
-  // const handleRemove = () => {
-  //   if (window.confirm("정말 삭제하시겠습니까?")) {
-  //     onRemove(originData.id);
-  //     navigate("/", { replace: true });
-  //   }
-  // };
+  const handleRemove = () => {
+    if (window.confirm("정말 삭제하시겠습니까?")) {
+      onRemove(originData.id);
+      navigate(-1);
+    }
+  };
 
   useEffect(() => {
     if (isEdit) {
@@ -139,6 +139,12 @@ const Editor = ({ isEdit, originData }) => {
                     className="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
                   >
                     {isEdit ? "수정완료" : "작성완료"}
+                  </button>
+                  <button
+                    onClick={handleRemove}
+                    className="border border-indigo-500 text-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
+                  >
+                    삭제하기
                   </button>
                 </div>
               </section>
