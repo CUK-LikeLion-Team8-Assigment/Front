@@ -60,12 +60,6 @@ function Sidebar({ isOpen, setIsOpen }) {
             </li>
           </>
         )}
-        <li className="my-8 text-base">
-          <Link to="/assessment">강의평가</Link>
-        </li>
-        <li className="my-8 text-base">
-          <Link to="/lecture">강의목록</Link>
-        </li>
       </ul>
     </div>
   );

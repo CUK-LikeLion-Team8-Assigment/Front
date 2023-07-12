@@ -4,7 +4,6 @@ import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
-import Lecture from "./pages/Lectrue/Lecture";
 import Detail from "./pages/crud/Detail";
 import New from "./pages/crud/New";
 import Edit from "./pages/crud/Edit";
@@ -126,10 +125,6 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={isLoggedIn ? <Home /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/home"
               element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
             />
             <Route
@@ -144,14 +139,7 @@ function App() {
               path="/edit/:id"
               element={isLoggedIn ? <Edit /> : <Navigate to="/login" />}
             />
-            <Route
-              path="/assessment"
-              element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
-            />
-            <Route
-              path="/lecture"
-              element={isLoggedIn ? <Lecture /> : <Navigate to="/login" />}
-            />
+
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>

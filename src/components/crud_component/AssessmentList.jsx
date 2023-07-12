@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Searchlecture from "./SearchLecture";
 
-
-
 const sortOptionList = [
   { value: "latest", name: "최신순" },
   { value: "oldest", name: "오래된순" },
@@ -16,7 +14,6 @@ const filterOptionList = [
   { value: "good", name: "좋은 후기만" },
   { value: "bad", name: "안좋은 후기만" },
 ];
-
 
 const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
