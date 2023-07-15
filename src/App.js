@@ -12,34 +12,67 @@ import { useSelector } from "react-redux";
 
 const AssessmentData = [
   {
-    id: 1,
-    score: 1,
-    lecture: "자료구조",
-    content: "어렵다",
-    date: 1687513053255,
+    userID: 1,
+    lectureName: "자료구조",
+    professorName: "황병연",
+    lectureYear: 2021,
+    semesterDivide: 1,
+    lectureDivide: "전공",
+    evaluationTitle: "평가 제목입니다.",
+    evaluationContent: "어렵다",
+    totalScore: "B",
+    creditScore: "B",
+    comfortableScore: "C",
+    lectureScore: "C",
+
   },
   {
-    id: 2,
-    score: 2,
-    lecture: "이산수학",
-    content: "조금 어렵다",
-    date: 1687513053256,
+    userID: 2,
+    lectureName: "이산수학",
+    professorName: "교수님 이름",
+    lectureYear: 2022,
+    semesterDivide: 2,
+    lectureDivide: "전공",
+    evaluationTitle: "평가 제목입니다.",
+    evaluationContent: "조금 어렵다",
+    totalScore: "A",
+    creditScore: "B",
+    comfortableScore: "B",
+    lectureScore: "C",
+
   },
   {
-    id: 3,
-    score: 3,
-    lecture: "논회설",
-    content: "많이 어렵다",
-    date: 1687513053257,
+    userID: 3,
+    lectureName: "논회설",
+    professorName: "교수님 이름",
+    lectureYear: 2020,
+    semesterDivide: 1,
+    lectureDivide: "전공",
+    evaluationTitle: "평가 제목입니다.",
+    evaluationContent: "많이 어렵다",
+    totalScore: "B",
+    creditScore: "C",
+    comfortableScore: "C",
+    lectureScore: "D",
+
   },
   {
-    id: 4,
-    score: 4,
-    lecture: "컴퓨터구조",
-    content: "많이많이 어렵다",
-    date: 1687513053257,
+    userID: 4,
+    lectureName: "컴퓨터구조",
+    professorName: "교수님 이름",
+    lectureYear: 2023,
+    semesterDivide: 2,
+    lectureDivide: "전공",
+    evaluationTitle: "평가 제목입니다.",
+    evaluationContent: "많이많이 어렵다",
+    totalScore: "C",
+    creditScore: "C",
+    comfortableScore: "D",
+    lectureScore: "D",
+
   },
 ];
+
 
 const reducer = (state, action) => {
   let newState = [];
@@ -52,12 +85,12 @@ const reducer = (state, action) => {
       break;
     }
     case "REMOVE": {
-      newState = state.filter((it) => it.id !== action.targetId);
+      newState = state.filter((it) => it.userID !== action.targetId);
       break;
     }
     case "EDIT": {
       newState = state.map((it) =>
-        it.id === action.data.id ? { ...action.data } : it
+        it.userID === action.data.userID ? { ...action.data } : it
       );
       break;
     } //전달받은 아이디와 일치하는 요소를 찾아낸 다음에 일치하는 요소에는 action.data 를 전달하게 함
@@ -81,15 +114,34 @@ function App() {
 
   const dataID = useRef(5);
   //CREATE
-  const onCreate = (date, lecture, content, score) => {
+  const onCreate = (
+    lectureName,
+    professorName,
+    lectureYear,
+    semesterDivide,
+    lectureDivide,
+    evaluationTitle,
+    evaluationContent,
+    totalScore,
+    creditScore,
+    comfortableScore,
+    lectureScore
+  ) => {
     dispatch({
       type: "CREATE",
       data: {
-        id: dataID.current,
-        date: new Date(date).getTime(),
-        lecture,
-        content,
-        score,
+        userID: dataID.current,
+        lectureName,
+        professorName,
+        lectureYear: new Date(lectureYear).getTime(),
+        semesterDivide,
+        lectureDivide,
+        evaluationTitle,
+        evaluationContent,
+        totalScore,
+        creditScore,
+        comfortableScore,
+        lectureScore,
       },
     });
     dataID.current += 1;
@@ -99,15 +151,35 @@ function App() {
     dispatch({ type: "REMOVE", targetId });
   };
   //onEdit
-  const onEdit = (targetId, date, lecture, content, score) => {
+  const onEdit = (
+    targetId,
+    lectureName,
+    professorName,
+    lectureYear,
+    semesterDivide,
+    lectureDivide,
+    evaluationTitle,
+    evaluationContent,
+    totalScore,
+    creditScore,
+    comfortableScore,
+    lectureScore
+  ) => {
     dispatch({
       type: "EDIT",
       data: {
-        id: targetId,
-        date: new Date(date).getTime(),
-        lecture,
-        content,
-        score,
+        userID: targetId,
+        lectureName,
+        professorName,
+        lectureYear: new Date(lectureYear).getTime(),
+        semesterDivide,
+        lectureDivide,
+        evaluationTitle,
+        evaluationContent,
+        totalScore,
+        creditScore,
+        comfortableScore,
+        lectureScore,
       },
     });
   };

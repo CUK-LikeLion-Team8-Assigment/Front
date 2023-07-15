@@ -3,7 +3,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AssessmentStateContext } from "../../App";
 import Editor from "../../components/crud_component/Editor";
 
-
 const Edit = () => {
   const [originData, setOriginData] = useState();
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ const Edit = () => {
   useEffect(() => {
     if (assessmentList.length >= 1) {
       const targetAssessment = assessmentList.find(
-        (it) => parseInt(it.id) === parseInt(id)
+        (it) => parseInt(it.userID) === parseInt(id)
       );
       setOriginData(targetAssessment);
 

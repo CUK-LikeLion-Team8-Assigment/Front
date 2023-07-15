@@ -1,8 +1,9 @@
 import React from "react";
 import ListItem from "./ListItem";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Searchlecture from "./SearchLecture";
+
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
@@ -37,23 +38,25 @@ const AssessmentList = ({ assessmentList }) => {
   const navigate = useNavigate();
   const [sortType, setSortType] = useState("latest");
   const [filter, setFilter] = useState("all");
+  
 
   const getProcessedDiaryList = () => {
-    const filterCallBack = (item) => {
-      if (filter === "good") {
-        return parseInt(item.score) >= 3;
-      } else {
-        return parseInt(item.score) < 3;
-      }
-    };
+   const filterCallBack = (item) => {
+     if (filter === "good") {
+       return item.totalScore === "A" || item.totalScore === "B";
+     } else if (filter === "bad") {
+       return item.totalScore === "C" || item.totalScore === "D";
+     } else {
+       return true;
+     }
+   };
 
     const compare = (a, b) => {
-      if (sortType === "latest") {
-        return parseInt(b.date) - parseInt(a.date);
-      } //최신순인지 오래된순인지 if 문으로 분기를 달아 정렬된 리스트로 반환함
-      else {
-        return parseInt(a.date) - parseInt(b.date);
-      }
+        if (sortType === "latest") {
+          return b.lectureYear - a.lectureYear;
+        } else {
+          return a.lectureYear - b.lectureYear;
+        }
     };
 
     const copyList = JSON.parse(JSON.stringify(assessmentList)); //배열을 json화시켜서 문자열을 바꿈
@@ -63,7 +66,7 @@ const AssessmentList = ({ assessmentList }) => {
       filter === "all" ? copyList : copyList.filter((it) => filterCallBack(it));
 
     const searchList = (itemList) => {
-      return itemList.lecture.includes(userInput);
+      return itemList.lectureName.includes(userInput);
     };
 
     const sortedList = filteredList.sort(compare);
@@ -75,7 +78,9 @@ const AssessmentList = ({ assessmentList }) => {
     setUserInput(input);
   };
   const processedList = getProcessedDiaryList(); // getProcessedDiaryList의 결과를 변수에 저장
-
+  useEffect(() => {
+    setUserInput("");
+  }, []);
   return (
     <div>
       <div className="w-10/12 flex justify-end items-center">
@@ -85,11 +90,11 @@ const AssessmentList = ({ assessmentList }) => {
             onChange={setSortType}
             optionList={sortOptionList}
           />
-          <ControlMenu
+          {/* <ControlMenu
             value={filter}
             onChange={setFilter}
             optionList={filterOptionList}
-          />
+          /> */}
         </div>
         <div>
           <Searchlecture onSearch={handleSearch} />
@@ -106,7 +111,7 @@ const AssessmentList = ({ assessmentList }) => {
 
       {processedList.map((it) => {
         // userInput에 입력된 값만 출력하도록 조건을 추가
-        if (userInput && !it.lecture.includes(userInput)) {
+        if (userInput && !it.lectureName.includes(userInput)) {
           return null; // 입력된 값이 포함되지 않으면 null을 반환하여 렌더링하지 않음
         }
         return <ListItem key={it.id} {...it} />;
