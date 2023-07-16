@@ -75,7 +75,6 @@ function App() {
       type: "INIT",
       data: AssessmentData,
     });
-    console.log(data);
   }, []);
 
   const dataID = useRef(5);
