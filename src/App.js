@@ -210,7 +210,10 @@ function App() {
           </Routes> */}
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
-            <Route path="/home" element={<Assessment />} />
+            <Route path="/" element={<Assessment />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/new" element={<New />} />
+            <Route path="/edit/:id" element={<Edit />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
