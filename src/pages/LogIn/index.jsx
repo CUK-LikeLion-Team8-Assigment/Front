@@ -43,10 +43,7 @@ const LogIn = () => {
     };
 
     axios
-      .post(
-        "https://f6227c41-ad14-49d4-8e8d-6179ca749e9a.mock.pstmn.io/login",
-        userData
-      )
+      .post("http://localhost:8080/login", userData)
       .then((response) => {
         console.log("로그인 성공", response.data);
         dispatch(login());

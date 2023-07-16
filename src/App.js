@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import React, { useRef, useEffect, useReducer } from "react";
-import Home from "./pages/Home/Home";
 import Layout from "./components/Layout/layout";
 import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
