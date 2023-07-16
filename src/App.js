@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 
 const AssessmentData = [
   {
-    userID: 1,
+    userId: 1,
     lectureName: "자료구조",
     professorName: "황병연",
     lectureYear: 2021,
@@ -23,10 +23,9 @@ const AssessmentData = [
     creditScore: "B",
     comfortableScore: "C",
     lectureScore: "C",
-
   },
   {
-    userID: 2,
+    userId: 2,
     lectureName: "이산수학",
     professorName: "교수님 이름",
     lectureYear: 2022,
@@ -38,10 +37,9 @@ const AssessmentData = [
     creditScore: "B",
     comfortableScore: "B",
     lectureScore: "C",
-
   },
   {
-    userID: 3,
+    userId: 3,
     lectureName: "논회설",
     professorName: "교수님 이름",
     lectureYear: 2020,
@@ -53,10 +51,9 @@ const AssessmentData = [
     creditScore: "C",
     comfortableScore: "C",
     lectureScore: "D",
-
   },
   {
-    userID: 4,
+    userId: 4,
     lectureName: "컴퓨터구조",
     professorName: "교수님 이름",
     lectureYear: 2023,
@@ -68,10 +65,8 @@ const AssessmentData = [
     creditScore: "C",
     comfortableScore: "D",
     lectureScore: "D",
-
   },
 ];
-
 
 const reducer = (state, action) => {
   let newState = [];
@@ -84,12 +79,12 @@ const reducer = (state, action) => {
       break;
     }
     case "REMOVE": {
-      newState = state.filter((it) => it.userID !== action.targetId);
+      newState = state.filter((it) => it.userId !== action.targetId);
       break;
     }
     case "EDIT": {
       newState = state.map((it) =>
-        it.userID === action.data.userID ? { ...action.data } : it
+        it.userId === action.data.userId ? { ...action.data } : it
       );
       break;
     } //전달받은 아이디와 일치하는 요소를 찾아낸 다음에 일치하는 요소에는 action.data 를 전달하게 함
@@ -128,7 +123,7 @@ function App() {
     dispatch({
       type: "CREATE",
       data: {
-        userID: dataID.current,
+        userId: dataID.current,
         lectureName,
         professorName,
         lectureYear: new Date(lectureYear).getTime(),
@@ -166,7 +161,7 @@ function App() {
     dispatch({
       type: "EDIT",
       data: {
-        userID: targetId,
+        userId: targetId,
         lectureName,
         professorName,
         lectureYear: new Date(lectureYear).getTime(),

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const ListItem = ({
-  userID,
+  userId,
   evaluationTitle,
   evaluationContent,
   lectureName,
@@ -20,12 +20,12 @@ const ListItem = ({
   env.PUBLIC_URL = env.PUBLIC_URL || "";
 
   const goDetail = () => {
-    navigate(`/detail/${userID}`);
+    navigate(`/detail/${userId}`);
   };
 
   const goEdit = () => {
     console.log("수정하기 버튼 클릭됨!");
-    navigate(`/edit/${userID}`);
+    navigate(`/edit/${userId}`);
   };
   const [recommend, setRecommend] = useState(0);
 
