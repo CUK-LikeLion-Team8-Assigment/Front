@@ -121,7 +121,7 @@ function App() {
         }}
       >
         <Layout>
-          <Routes>
+          {/* <Routes>
             <Route
               path="/"
               element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
@@ -139,6 +139,12 @@ function App() {
               element={isLoggedIn ? <Edit /> : <Navigate to="/login" />}
             />
 
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes> */}
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/home" element={<Assessment />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>
