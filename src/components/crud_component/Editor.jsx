@@ -36,7 +36,6 @@ const Editor = ({ isEdit, originData }) => {
       )
     ) {
       if (!isEdit) {
-     
         // 새로운 일기 작성
         onCreate(
           lectureName,
@@ -81,30 +80,29 @@ const Editor = ({ isEdit, originData }) => {
   };
 
   useEffect(() => {
-    if (isEdit && originData ) {
+    if (isEdit && originData) {
       setLectureYear(originData.lectureYear);
       setLectureName(originData.lectureName);
       setEvaluationContent(originData.evaluationContent);
-      setComfortableScore(originData.comfortableScore)
-      setEvaluationTitle(originData.evaluationTitle)
-      setCreditScore(originData.creditScore)
-      setLectureScore(originData.lectureScore)
-      setTotalScore(originData.totalScore)
-      setProfessorName(originData.professorName)
+      setComfortableScore(originData.comfortableScore);
+      setEvaluationTitle(originData.evaluationTitle);
+      setCreditScore(originData.creditScore);
+      setLectureScore(originData.lectureScore);
+      setTotalScore(originData.totalScore);
+      setProfessorName(originData.professorName);
     }
   }, [isEdit, originData]);
 
-const getYearOptions = (startYear, endYear) => {
-  const years = [];
-  for (let year = startYear; year <= endYear; year++) {
-    years.push(year);
-  }
-  return years;
-};
+  const getYearOptions = (startYear, endYear) => {
+    const years = [];
+    for (let year = startYear; year <= endYear; year++) {
+      years.push(year);
+    }
+    return years;
+  };
   const startYear = 2005;
   const endYear = 2023;
   const yearOptions = getYearOptions(startYear, endYear);
-
 
   const handleYearChange = (e) => {
     setLectureYear(Number(e.target.value));

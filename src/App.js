@@ -24,7 +24,6 @@ const AssessmentData = [
     creditScore: "B",
     comfortableScore: "C",
     lectureScore: "C",
-
   },
   {
     userId: 2,
@@ -39,7 +38,6 @@ const AssessmentData = [
     creditScore: "B",
     comfortableScore: "B",
     lectureScore: "C",
-
   },
   {
     userId: 3,
@@ -54,7 +52,6 @@ const AssessmentData = [
     creditScore: "C",
     comfortableScore: "C",
     lectureScore: "D",
-
   },
   {
     userId: 4,
@@ -69,10 +66,8 @@ const AssessmentData = [
     creditScore: "C",
     comfortableScore: "D",
     lectureScore: "D",
-
   },
 ];
-
 
 const reducer = (state, action) => {
   let newState = [];
@@ -116,8 +111,10 @@ function App() {
     };
 
   useEffect(() => {
-  fetchDataFromServer();
-    console.log(data);
+    dispatch({
+      type: "INIT",
+      data: AssessmentData,
+    });
   }, []);
 
   const dataID = useRef(5);
@@ -202,7 +199,7 @@ function App() {
         }}
       >
         <Layout>
-          <Routes>
+          {/* <Routes>
             <Route
               path="/"
               element={isLoggedIn ? <Assessment /> : <Navigate to="/login" />}
@@ -220,6 +217,17 @@ function App() {
               element={isLoggedIn ? <Edit /> : <Navigate to="/login" />}
             />
 
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes> */}
+          <Routes>
+            {/* 쿠키 데이터 없을때 => 우선 리다이렉트 풀고 홈으로이동하도록 */}
+            {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+
+            <Route path="/" element={<Assessment />} />
+            <Route path="/detail/:id" element={<Detail />} />
+            <Route path="/new" element={<New />} />
+            <Route path="/edit/:id" element={<Edit />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
           </Routes>

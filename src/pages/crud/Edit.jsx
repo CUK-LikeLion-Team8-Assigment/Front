@@ -22,12 +22,10 @@ const Edit = () => {
         navigate("/", { replace: true });
       } //잘못된 id 값을 넣었을때 홈으로 가게 함
     }
-  }, [id, assessmentList]); 
+  }, [id, assessmentList]);
 
   return (
-    <div>
-      {originData && <Editor isEdit={true} originData={originData} />}
-    </div>
+    <div>{originData && <Editor isEdit={true} originData={originData} />}</div>
   );
 };
 export default Edit;
