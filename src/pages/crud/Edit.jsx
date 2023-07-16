@@ -13,7 +13,7 @@ const Edit = () => {
   useEffect(() => {
     if (assessmentList.length >= 1) {
       const targetAssessment = assessmentList.find(
-        (it) => parseInt(it.userID) === parseInt(id)
+        (it) => parseInt(it.userId) === parseInt(id)
       );
       setOriginData(targetAssessment);
 

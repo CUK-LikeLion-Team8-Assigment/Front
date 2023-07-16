@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-const ListItem = ({ userID, evaluationTitle, evaluationContent, lectureName,lectureYear, 
+const ListItem = ({ userId, evaluationTitle, evaluationContent, lectureName,lectureYear, 
 semesterDivide, lectureDivide,totalScore, creditScore, comfortableScore, lectureScore }) => {
   const navigate = useNavigate();
 
@@ -10,12 +10,12 @@ semesterDivide, lectureDivide,totalScore, creditScore, comfortableScore, lecture
 
 
   const goDetail = () => {
-    navigate(`/detail/${userID}`);
+    navigate(`/detail/${userId}`);
   };
 
   const goEdit = () => {
      console.log("수정하기 버튼 클릭됨!"); 
-    navigate(`/edit/${userID}`);
+    navigate(`/edit/${userId}`);
   };
 
   return (
