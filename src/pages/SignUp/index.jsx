@@ -49,7 +49,7 @@ const SignUp = () => {
           })
           .catch((error) => {
             console.log(error.response);
-            setSignUpError(error.response);
+            setSignUpError(error.response.data);
           })
           .finally(() => {});
       }
