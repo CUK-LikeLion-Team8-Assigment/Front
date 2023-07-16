@@ -209,7 +209,9 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
           </Routes> */}
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
+            {/* 쿠키 데이터 없을때 => 우선 리다이렉트 풀고 홈으로이동하도록 */}
+            {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+
             <Route path="/" element={<Assessment />} />
             <Route path="/detail/:id" element={<Detail />} />
             <Route path="/new" element={<New />} />
