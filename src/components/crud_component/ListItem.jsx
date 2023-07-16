@@ -25,13 +25,13 @@ const ListItem = ({ id, content, lecture, date, score }) => {
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className="w-9/12 flex mb-3 items-center justify-between w-full p-2  hover:bg-gray-100 cursor-pointer border-2 rounded-lg">
+        <div className=" flex mb-3 items-center justify-between w-full p-2  hover:bg-gray-100 cursor-pointer border-2 rounded-lg">
           <div className="w-10/12" onClick={goDetail}>
             <div className="info_wrapper ">
               <div className="text-sm">작성날짜 : {strDate}</div>
               <div className="font-bold text-l">과목명 : {lecture}</div>
               <div>{content.slice(0, 25)}</div>
-              <div>만족도 : {score}</div>
+              <div>만족동 : {score}</div>
             </div>
           </div>
           <div className="btn_wrapper">

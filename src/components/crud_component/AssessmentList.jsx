@@ -13,6 +13,7 @@ const filterOptionList = [
   { value: "all", name: "전부 다" },
   { value: "good", name: "좋은 후기만" },
   { value: "bad", name: "안좋은 후기만" },
+  { value: "recommend", name: "추천순" },
 ];
 
 const ControlMenu = React.memo(({ value, onChange, optionList }) => {
