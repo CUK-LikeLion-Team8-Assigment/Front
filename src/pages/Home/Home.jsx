@@ -22,7 +22,9 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`/evaluation/${postId}`);
+        const response = await axios.get(
+          `http://localhost:8080/evaluation/${postId}`
+        );
         setEvaluationData((prevData) => [...prevData, response.data]);
       } catch (error) {
         console.error("Error:", error);
@@ -36,7 +38,7 @@ const Home = () => {
       console.log("evaluationTitle is required.");
       return;
     }
-    const url = "/evaluation/post";
+    const url = "http://localhost:8080/evaluation/post";
     const data = {
       userId,
       lectureName,
@@ -80,136 +82,126 @@ const Home = () => {
   return (
     <div>
       <div className="max-w-md mx-auto p-4 bg-white rounded shadow">
-        <h1 className="text-xl font-bold mb-4">Evaluation Form</h1>
+        <h1 className="text-xl font-bold mb-4">강의평 작성</h1>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">User ID:</label>
+          <label className="block mb-2 text-sm font-bold">작성자:</label>
           <input
             type="text"
             value={userId}
             onChange={(e) => setUserId(e.target.value)}
-            placeholder="User ID"
+            placeholder="작성자"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Lecture Name:</label>
+          <label className="block mb-2 text-sm font-bold">강의명:</label>
           <input
             type="text"
             value={lectureName}
             onChange={(e) => setLectureName(e.target.value)}
-            placeholder="Lecture Name"
+            placeholder="강의명"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
-            Professor Name:
-          </label>
+          <label className="block mb-2 text-sm font-bold">교수명:</label>
           <input
             type="text"
             value={professorName}
             onChange={(e) => setProfessorName(e.target.value)}
-            placeholder="Professor Name"
+            placeholder="교수명"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Lecture Year:</label>
+          <label className="block mb-2 text-sm font-bold">수강년도:</label>
           <input
             type="number"
             value={lectureYear}
             onChange={(e) => setLectureYear(parseInt(e.target.value))}
-            placeholder="Lecture Year"
+            placeholder="수강년도"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
-            Semester Divide:
-          </label>
+          <label className="block mb-2 text-sm font-bold">학기:</label>
           <input
             type="text"
             value={semesterDivide}
             onChange={(e) => setSemesterDivide(e.target.value)}
-            placeholder="Semester Divide"
+            placeholder="학기"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
-            Lecture Divide:
+            전공선택(전공,자교):
           </label>
           <input
             type="text"
             value={lectureDivide}
             onChange={(e) => setLectureDivide(e.target.value)}
-            placeholder="Lecture Divide"
+            placeholder="전공선택(전공,자교)"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
-            Evaluation Title:
-          </label>
+          <label className="block mb-2 text-sm font-bold">평가제목:</label>
           <input
             type="text"
             value={evaluationTitle}
             onChange={(e) => setEvaluationTitle(e.target.value)}
-            placeholder="Evaluation Title"
+            placeholder="평가제목"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
-            Evaluation Content:
-          </label>
+          <label className="block mb-2 text-sm font-bold">평가내용:</label>
           <input
             type="text"
             value={evaluationContent}
             onChange={(e) => setEvaluationContent(e.target.value)}
-            placeholder="Evaluation Content"
+            placeholder="평가내용"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Total Score:</label>
+          <label className="block mb-2 text-sm font-bold">합산 점수:</label>
           <input
             type="text"
             value={totalScore}
             onChange={(e) => setTotalScore(e.target.value)}
-            placeholder="Total Score"
+            placeholder="합산 점수"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Credit Score:</label>
+          <label className="block mb-2 text-sm font-bold">교수 평가점수:</label>
           <input
             type="text"
             value={creditScore}
             onChange={(e) => setCreditScore(e.target.value)}
-            placeholder="Credit Score"
+            placeholder="교수 평가점수"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
-            Comfortable Score:
-          </label>
+          <label className="block mb-2 text-sm font-bold">수업 평가점수:</label>
           <input
             type="text"
             value={comfortableScore}
             onChange={(e) => setComfortableScore(e.target.value)}
-            placeholder="Comfortable Score"
+            placeholder="수업 평가점수"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Lecture Score:</label>
+          <label className="block mb-2 text-sm font-bold">강의평가 점수:</label>
           <input
             type="text"
             value={lectureScore}
             onChange={(e) => setLectureScore(e.target.value)}
-            placeholder="Lecture Score"
+            placeholder="강의평가 점수"
             className="w-full px-3 py-2 border border-gray-300 rounded"
           />
         </div>
@@ -218,12 +210,12 @@ const Home = () => {
             onClick={sendData}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
-            Submit
+            제출
           </button>
         </div>
       </div>
       <div className="max-w-md mx-auto p-4 bg-white rounded shadow">
-        <h1 className="text-xl font-bold mb-4">Evaluation Details</h1>
+        <h1 className="text-xl font-bold mb-4">최근 강의평</h1>
         {evaluationData.map((data) => (
           <ListItem
             key={data.userId}
