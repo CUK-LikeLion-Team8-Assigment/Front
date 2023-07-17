@@ -1,29 +1,27 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { logout } from "../../actions/actions";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    axios
-      .post("http://localhost:8080/logout")
-      .then((response) => {
-        console.log("로그아웃 성공", response.data);
-        dispatch(logout());
-        localStorage.setItem("isLoggedIn", "false");
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.error("로그아웃 실패", error);
+  const handleLogout = async () => {
+    try {
+      await axios.patch("/logout", {
+        withCredentials: true,
       });
+      console.log("logout successful");
+
+      navigate("/login");
+    } catch (error) {
+      console.error("logout error:", error);
+    }
   };
 
   return (
-    <button onClick={handleLogout} className="text-blue-600 font-bold">
+    <button
+      onClick={handleLogout}
+      className=" text-white font-bold py-2 px-4 rounded"
+    >
       로그아웃
     </button>
   );

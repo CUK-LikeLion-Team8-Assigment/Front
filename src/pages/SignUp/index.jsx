@@ -38,7 +38,7 @@ const SignUp = () => {
         setSignUpError("");
         setSignUpSuccess(false);
         axios
-          .post("http://localhost:8080/join", {
+          .post("/join", {
             userEmail,
             userID,
             userPassword,

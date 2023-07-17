@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import React, { useRef, useEffect, useReducer } from "react";
 import Layout from "./components/Layout/layout";
 import LogIn from "./pages/LogIn";
@@ -8,6 +8,7 @@ import New from "./pages/crud/New";
 import Edit from "./pages/crud/Edit";
 import Assessment from "./pages/crud/Assessment";
 import { useSelector } from "react-redux";
+import DeleteUsers from "./pages/Delete/deleteUser";
 
 const AssessmentData = [
   {
@@ -218,6 +219,7 @@ function App() {
             <Route path="/edit/:id" element={<Edit />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/withdrawal" element={<DeleteUsers />} />
           </Routes>
         </Layout>
       </AssessmentDispatchContext.Provider>

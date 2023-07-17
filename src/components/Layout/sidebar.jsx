@@ -1,12 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Logout from "../LogOut";
 
 function Sidebar({ isOpen, setIsOpen }) {
   const outside = useRef(null);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -46,6 +48,13 @@ function Sidebar({ isOpen, setIsOpen }) {
         </li>
         <li className="my-8">
           <Link to="/signup">회원가입</Link>
+        </li>
+        <li className="my-8">
+          <Link to="/withdrawal">회원탈퇴하기</Link>
+        </li>
+
+        <li className="my-8">
+          <Logout />
         </li>
       </ul>
     </div>

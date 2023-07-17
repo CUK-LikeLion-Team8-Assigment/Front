@@ -7,6 +7,7 @@ const LogIn = () => {
   const [userPassword, setUserPassword] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [logInError, setLogInError] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -17,18 +18,28 @@ const LogIn = () => {
       userEmail,
     };
     axios
-      .post("http://localhost:8080/login", userData)
+      .post("/login", userData, { withCredentials: true })
       .then((response) => {
         console.log("로그인 성공", response.data);
-        // Reset the form fields
+
         setUserID("");
         setUserPassword("");
         setUserEmail("");
+
+        navigate("/");
       })
       .catch((error) => {
         setLogInError(error.response?.status === 401);
+        alert("로그인 정보가 다릅니다.");
       });
   };
+
+  // useEffect(() => {
+  //   const sessionCookie = document.cookie.includes("JSESSIONID=");
+  //   if (sessionCookie) {
+  //     navigate("/");
+  //   }
+  // }, [navigate]);
 
   return (
     <div className="container mx-auto">
