@@ -9,6 +9,7 @@ import Edit from "./pages/crud/Edit";
 import Assessment from "./pages/crud/Assessment";
 import { useSelector } from "react-redux";
 import DeleteUsers from "./pages/Delete/deleteUser";
+import About from "./pages/About/About";
 
 const AssessmentData = [
   {
@@ -220,6 +221,7 @@ function App() {
             <Route path="/login" element={<LogIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/withdrawal" element={<DeleteUsers />} />
+            <Route path="/about" element={<About />} />
           </Routes>
         </Layout>
       </AssessmentDispatchContext.Provider>

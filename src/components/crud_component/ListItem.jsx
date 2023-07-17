@@ -36,7 +36,7 @@ const ListItem = ({
   return (
     <>
       <div className="flex justify-center items-center">
-        <div className=" flex mb-3 items-center justify-between w-full p-2  hover:bg-gray-100 cursor-pointer border-2 rounded-lg">
+        <div className=" flex mb-3 items-center justify-between w-full p-2 text-white hover:bg-hover-color cursor-pointer border-2 rounded-lg">
           <div className="w-10/12" onClick={goDetail}>
             <div className="info_wrapper ">
               <div className="text-sm">
@@ -56,19 +56,10 @@ const ListItem = ({
           <div className="btn_wrapper">
             <button
               onClick={goEdit}
-              className="text-sm border justify-end border-indigo-500 text-indigo-500 rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus:shadow-outline"
+              className="text-sm border justify-end border-btn-color text-btn-color rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:text-white hover:border-0 hover:bg-btn-color hover:bg-right focus:outline-none focus:shadow-outline"
             >
               수정하기
             </button>
-            <div className="btn_wrapper">
-              <button
-                onClick={handleRecommend}
-                className="text-sm border justify-endborderindigo-500 text-indigo-500 rounded-md px-2 py-1 m-1 transition duration-500 ease select-none hover:text-white hover:bg-indigo-600 focus:outline-none focus: shadow-outline"
-              >
-                추천하기
-              </button>
-              {recommend}
-            </div>
           </div>
         </div>
       </div>

@@ -52,9 +52,11 @@ function Sidebar({ isOpen, setIsOpen }) {
         <li className="my-8">
           <Link to="/withdrawal">회원탈퇴하기</Link>
         </li>
-
         <li className="my-8">
           <Logout />
+        </li>
+        <li className="my-8">
+          <Link to="/about">About</Link>
         </li>
       </ul>
     </div>

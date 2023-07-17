@@ -29,7 +29,7 @@ const DeleteUsers = () => {
   };
 
   return (
-    <div>
+    <div className="text-white">
       <form className="mx-auto w-64">
         <div className="mb-4">
           <label htmlFor="userID" className="block font-bold mb-1">

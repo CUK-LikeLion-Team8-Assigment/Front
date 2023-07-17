@@ -58,8 +58,8 @@ const SignUp = () => {
   );
 
   return (
-    <div className="container mx-auto">
-      <h1 className="text-center text-4xl font-bold my-8">Sleact</h1>
+    <div className="container mx-auto text-white">
+      <h1 className="text-center text-4xl font-bold my-8">회원가입</h1>
       <form onSubmit={onSubmit}>
         <div className="mb-4">
           <label htmlFor="userEmail" className="block font-bold mb-1">
