@@ -34,11 +34,11 @@ const Home = () => {
   }, [postId]);
 
   const sendData = async () => {
-    if (!evaluationTitle) {
-      console.log("evaluationTitle is required.");
-      return;
-    }
-    const url = "http://localhost:8080/evaluation/post";
+    // if (!evaluationTitle) {
+    //   console.log("evaluationTitle is required.");
+    //   return;
+    // }
+    const url = "/evaluation/post";
     const data = {
       userId,
       lectureName,
